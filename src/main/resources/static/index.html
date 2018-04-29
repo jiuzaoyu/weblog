@@ -5,6 +5,7 @@
     <title>WebSocket Logger</title>
     <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
     <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <!--一个是stomp，这是一种通信协议-->
     <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
@@ -24,6 +25,7 @@
     $(document).ready(function() {openSocket();});
     function openSocket() {
         if(stompClient==null){
+            //有了下面这三句话，我们就已经可以连接上了服务器
             var socket = new SockJS('http://localhost:8087/websocket?token=kl');
             stompClient = Stomp.over(socket);
             stompClient.connect({token:"kl"}, function(frame) {

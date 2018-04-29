@@ -11,11 +11,15 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+//创建一个类，继承WebSocketMessageBrokerConfigurer，并且在类上加上annotation：@Configuration和@EnableWebSocketMessageBroker。
+// 这样，Spring就会将这个类当做配置类，并且打开WebSocket
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
     @Override
+    //注册消息连接点
     public void registerStompEndpoints(StompEndpointRegistry registry) {
+        //添加这个Endpoint，这样在网页中就可以通过websocket连接上服务了
         registry.addEndpoint("/websocket")
                 .setAllowedOrigins("http://localhost:8976")
                 .addInterceptors()
